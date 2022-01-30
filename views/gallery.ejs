@@ -1,0 +1,59 @@
+<!--THIS PAGE WAS NOT MADE BY US.
+
+    WE MADE A FEW EDITS AND CHANGES BUT....
+    
+    this was an open source template that we decided to use from the following link:
+	https://colorlib.com/wp/template/login-form-20/
+	Author: Colorlib
+	Released: 2021
+	License: CC BY 3.0
+
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>La Gallerie Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+	<body class="img js-fullheight" style="background-image: url(images/bg.jpg); background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+
+        <%- include("navbar") -%> <!--This includes the navagation bar that was made on navbar.ejs-->
+
+        <section class="ftco-section">
+            <div class="container">
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <h1 class="heading-section">Gallery</h1>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row justify-content-center">
+                    <div class="login-wrap p-0">  
+
+                        <% for( var i=0; i<itemList.length; i++ ){ %>
+
+                            <div class="w-100 text-center">
+                                <img src= <%= itemList[i].image_location %> width="500" height="300"> <br>  <!--List the image-->
+                                <a class="px-2 py-2 mr-md-1 rounded" href="/viewsingleart/<%= itemList[i].item_id %>" > <%= itemList[i].item_name %> </a> <!--List the image name-->
+                                <p>Artist: <%= itemList[i].seller %> <br> Price: $<%= itemList[i].price %> </p> <!--List the image Artist-->   <!--List the image price-->
+                                <br> <br>
+                            </div> 
+
+                        <% } %>
+                
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+	</body>
+
+</html>
