@@ -30,7 +30,7 @@ username and id and then redirect to gallerypage*/
 
 app.get("/login", function(req, res){
     //When the user first comes to this page, log them out
-    const loginbakend = require( __dirname + '/loginbackend.js');
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js');  
     loginbakend.logout(); //logs out user in case they did not sign out
 
     res.render("login");
@@ -42,7 +42,7 @@ app.post("/login", function(req, res){
     const passw = req.body.passwfield;
 
     /*Use the signin method from the loginbackend.js file to try signing in the user*/
-    const loginbakend = require( __dirname + '/loginbackend.js');
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js');
 
     loginbakend.signin( usern, passw, function(err, result){
         if(err){ throw err; } //catch any errors, if they exist
@@ -81,7 +81,7 @@ app.post("/signup", function(req, res){
 
     }else{
         /*Use the signup method from the loginbackend.js file to signup the user*/
-        const loginbakend = require( __dirname + '/loginbackend.js');
+        const loginbakend = require( __dirname + '/public/js/loginbackend.js');
         loginbakend.signup( usern, pass1, function(err, result){
             if(err){ throw err } //catch any errors if they exist
             res.send("<script>alert('Sign Up Successful. Redirecting to login screen'); window.location.href = '/login'; </script>");
@@ -100,7 +100,7 @@ app.post("/signup", function(req, res){
 /*The Gallery page should show the list of art stored in the database along with simple
 information about the art like its creator, price...etc*/
 app.get("/gallery", function(req, res){
-    const gallerybakend = require( __dirname + '/gallerybackend.js'); //now you can use objects in gallerybackend.js file
+    const gallerybakend = require( __dirname + '/public/js/gallerybackend.js'); //now you can use objects in gallerybackend.js file
     gallerybakend.getAllItems( function(err, results){
         res.render( "gallery", {itemList: results} );
     });
