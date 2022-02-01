@@ -1,6 +1,8 @@
-<!--THIS PAGE WAS NOT MADE BY US.
+<!--THIS PAGE WAS NOT FULLY MADE BY US.
 
-    WE MADE A FEW EDITS AND CHANGES BUT....
+    WE MADE EDITS AND CHANGES SO THAT IT FITS MORE 
+    WITH THE STYLE OF THE WEBSITE THAT WE WANT BUT THE TEMPLATE
+     WE GOT IT FROM WAS NOT CREATED BY US
     
     this was an open source template that we decided to use from the following link:
 	https://colorlib.com/wp/template/login-form-20/
@@ -35,23 +37,8 @@
                 </div>
                 <br>
 
-                <div class="row justify-content-center">
-                    <div class="login-wrap p-0">  
+                <%- include("imageCards") -%> <!-- Runs a for loop with individual pieces of art-->
 
-                        <% for( var i=0; i<itemList.length; i++ ){ %>
-
-                            <div class="w-100 text-center">
-                                <img src= <%= itemList[i].image_location %> width="500" height="300"> <br>  <!--List the image-->
-                                <a class="px-2 py-2 mr-md-1 rounded" href="/viewsingleart/<%= itemList[i].item_id %>" > <%= itemList[i].item_name %> </a> <!--List the image name-->
-                                <p>Artist: <%= itemList[i].seller %> <br> Price: $<%= itemList[i].price %> </p> <!--List the image Artist-->   <!--List the image price-->
-                                <br> <br>
-                            </div> 
-
-                        <% } %>
-                
-                    </div>
-                </div>
-                
             </div>
         </section>
 	</body>

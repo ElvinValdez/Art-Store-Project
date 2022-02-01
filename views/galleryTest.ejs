@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+    <div class="login-wrap p-0">  
+
+        <% for( var i=0; i<itemList.length; i++ ){ %>
+
+            <div class="w-100 text-center">
+                <img src= <%= itemList[i].image_location %> width="500" height="300"> <br>  <!--List the image-->
+                <a class="px-2 py-2 mr-md-1 rounded" href="/viewsingleart/<%= itemList[i].item_id %>" > <%= itemList[i].item_name %> </a> <!--List the image name-->
+                <p>Artist: <%= itemList[i].seller %> <br> Price: $<%= itemList[i].price %> </p> <!--List the image Artist-->   <!--List the image price-->
+                <br> <br>
+            </div> 
+
+        <% } %>
+
+    </div>
+</div>
