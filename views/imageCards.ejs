@@ -13,7 +13,7 @@
 
     <article class="postcard light blue">
         <a class="postcard__img_link" href="#">
-            <img class="postcard__img" src= <%= itemList[i].image_location %> alt= <%= itemList[i].name %> />
+            <img class="postcard__img" src= imagefileserver/<%= itemList[i].image_location %> alt= <%= itemList[i].name %> />
         </a>
         <div class="postcard__text t-dark">
             <h1 class="postcard__title blue"><a href="/viewsingleart/<%= itemList[i].item_id %>"> <%= itemList[i].item_name %> </a></h1>
@@ -23,7 +23,7 @@
                 </time>
             </div>
             <div class="postcard__bar"></div>
-            <div class="postcard__preview-txt"> $<%= itemList[i].item_description %> </div>
+            <div class="postcard__preview-txt"> <%= itemList[i].item_description %> </div>
             <ul class="postcard__tagbox">
                 <li class="tag__item"> 
                     <a href="/viewsingleart/<%= itemList[i].item_id %>"><i class="fas fa-tag mr-2"></i>View Image</a>

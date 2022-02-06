@@ -94,7 +94,7 @@ exports.logout = function(){
 
 
 /*Use to get current user id*/
-exports.getCurrentUserId = function( id, username ){
+exports.getCurrentUserId = function(){
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');  //Allows the use of localStorage
 
@@ -104,7 +104,7 @@ exports.getCurrentUserId = function( id, username ){
 
 
 /*Use to get current user username*/
-exports.getCurrentUserId = function( id, username ){
+exports.getCurrentUsername = function(){
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');  //Allows the use of localStorage
 
