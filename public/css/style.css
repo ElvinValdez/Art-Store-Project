@@ -6632,7 +6632,9 @@ button.bg-dark:focus {
 
 .mb-4,
 .my-4 {
-  margin-bottom: 1.5rem !important; }
+  margin-bottom: 1.5rem !important; 
+  font-family: Optima, sans-serif;
+}
 
 .ml-4,
 .mx-4 {
@@ -8183,7 +8185,8 @@ h1, h2, h3, h4, h5,
   padding-bottom: 0; }
 
 .heading-section {
-  font-size: 52px;
+  font-family: Snell Roundhand, cursive;
+  font-size: 66px;
   color: #fff; }
 
 .img {
