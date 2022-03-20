@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View Art</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+
+    </head>
+    <body class="img js-fullheight" style="background-image: url(/images/bg.jpg); background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <h5 style="font-weight: bold; color: white " class="mb-4 text-center"> <%=imageName%> </h3> <br>
+                    <img src=/imagefileserver/<%=imageLocation%> width="500" height="500" > <br>
+                    <h5 style="font-weight: bold; color: white" class="mb-4 text-center"><%= imageAuthor %> </h5>
+                    <h5 style="font-weight: bold; color: white" class="mb-4 text-center"> <%= imagePrice %> </h5>
+                    <h5 style="font-weight: bold; color: white" class="mb-4 text-center"> <%= imageDescription %> </h5>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

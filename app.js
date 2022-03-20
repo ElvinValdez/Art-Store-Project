@@ -12,12 +12,19 @@ const app = express();
 
 
 app.use(bodyParser.urlencoded({ extended: true })); //allows the use of bodyparser
-app.set( "view engine", "ejs" ); //allows the use of ejs files. They must be in the views folder
+// app.set( "view engine", "ejs" ); //allows the use of ejs files. They must be in the views folder
 
 /*Static files, like css and image files, can now be stored in the public folder. 
 Node.js will look for any js, css, or image files in these folders. Basically static files*/
 app.use( express.static("public") );
+app.set( "view engine", "ejs" ); //allows the use of ejs files. They must be in the views folder
 
+
+
+
+app.get( "/", function(req, res){
+    res.redirect("/login");
+});
 
 
 
@@ -109,13 +116,47 @@ app.get("/gallery", function(req, res){
 });
 
 
+
+app.get("/addedToCart/:i_id", function( req, res ){
+    //Dont let the user add to cart if they are not logged in.
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js' ); //now you can use objects in loginbakend.js file
+    const gallerybakend = require( __dirname + '/public/js/gallerybackend.js'); //now you can use objects in gallerybackend.js file
+
+    if( loginbakend.getCurrentUserId() === "-99" ){ //user is not logged in, redirect to login
+        res.redirect("/login");
+    }else{
+        gallerybakend.addToCart( loginbakend.getCurrentUsername(), req.params.i_id, function(err, result){
+            if(err){throw err};
+
+            res.redirect("/viewsingleart/"+req.params.i_id );
+
+        } );
+
+    }
+});
+
+
 //------------------------------------
-// Routes for View Single Art Page
+// Routes for View Art Page
 //------------------------------------
 
 app.get("/viewsingleart/:i_id", function(req, res){
-    // res.send( "The id is: "+req.params.i_id);
-    res.send( "The id is: "+req.params.i_id );
+    const gallerybakend = require( __dirname + '/public/js/gallerybackend.js');
+    gallerybakend.getSpecificItem( req.params.i_id, function( err, result ){
+        if( err ){ throw err; } //Take care of errors
+
+        res.render( "viewart", {imageName: result[0].item_name, 
+                                imageLocation: result[0].image_location,
+                                imageAuthor: result[0].seller,
+                                imagePrice: result[0].price,
+                                imageDescription: result[0].item_description } );
+
+    });
+
+    // res.render( "viewart", {} );
+
+    // res.send( "You number is: " + req.params.i_id );
+
 });
 
 
@@ -174,6 +215,11 @@ app.post("/uploadartpicture/:desc-:price-:name", function(req, res){
         res.redirect("/gallery");
     });
 });
+
+
+
+
+
 
 
 //Listen on port 3000
