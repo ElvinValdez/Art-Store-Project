@@ -66,7 +66,8 @@ THIS PAGE WAS NOT FULLY MADE BY US.
 	 font-size: 80%;
 }
  .postcard .postcard__title {
-	 font-size: 1.75rem;
+	font-size: 1.75rem;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
  .postcard .postcard__img {
 	 max-height: 180px;
@@ -90,12 +91,14 @@ THIS PAGE WAS NOT FULLY MADE BY US.
 	 position: relative;
 	 display: flex;
 	 flex-direction: column;
+	 font-family: 'Courier New', Courier, monospace;
 }
  .postcard .postcard__preview-txt {
 	 overflow: hidden;
 	 text-overflow: ellipsis;
 	 text-align: justify;
 	 height: 100%;
+	 font-family: Georgia, 'Times New Roman', Times, serif;
 }
  .postcard .postcard__tagbox {
 	 display: flex;
