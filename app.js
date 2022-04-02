@@ -220,6 +220,86 @@ app.post("/uploadartpicture/:desc-:price-:name", function(req, res){
 
 
 
+// ------------------ -------------
+// Routes for the Approval system
+// ------------------ -------------
+
+/*Get method to load approval page */
+app.get( "/approvalRequest", function(req, res){
+    //Dont let the user enter this page if they are not an admin.
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js' );
+
+    if( loginbakend.getCurrentUsername() === "admin" ){ //user is an admin. Let them enter
+
+        const gallerybakend = require( __dirname + '/public/js/gallerybackend.js'); //now you can use objects in gallerybackend.js file
+        gallerybakend.getUnapprovedItems( function(err, results){
+            res.render( "approvalpage", {itemList: results} );
+        });
+        
+    }else{
+        res.send("<script>alert('Must be an admin to access this screen'); window.location.href = '/gallery'; </script>");
+    }
+});
+
+
+/* Method for image that is approved. Changes the status of a item to "true"
+   which means it has been approved. Item is recognized by given id */
+app.get("/imageapproved/:i_id", function(req, res){
+    const approvalbakend = require( __dirname + '/public/js/approvalBackend.js'); // objects in approvalBackend file can now be used
+    approvalbakend.itemApproved( req.params.i_id, function(err, result){
+        if( err ){ throw err; } //check and throw errors if they exist
+
+        res.redirect("/approvalRequest");
+    });
+
+});
+
+
+/* Method for image that is rejected. That image is removed entirely from the database. 
+    This is done by the given id.*/
+app.get( "/imagerejected/:i_id", function(req, res){
+    const approvalbakend = require( __dirname + '/public/js/approvalBackend.js'); // objects in approvalBackend file can now be used
+    approvalbakend.itemRejected( req.params.i_id, function(err, result){
+        if( err ){ throw err; } //check and throw errors if they exist
+
+        res.redirect("/approvalRequest");
+    });
+});
+
+
+
+
+// --------------------
+// Routes for User Items Page
+// --------------------
+
+app.get( "/seeUserItems", function(req, res){
+    //Dont let the user enter this page if they are not an logged in.
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js' );
+
+    if( loginbakend.getCurrentUserId() === "-99" ){ //user is not logged in, redirect to login
+        res.send("<script>alert('Must login to access this screen'); window.location.href = '/login'; </script>");
+
+    }else{
+        const userItemsBakend = require( __dirname + '/public/js/userItemsBackend.js'); // objects in userItemsBackend file can now be used
+        userItemsBakend.getSpecificItem( loginbakend.getCurrentUsername(), function(err, results){
+            res.render( "useritems", {itemList: results} );
+        });
+
+    }
+
+
+});
+
+app.get( "/itemRemove/:i_id", function(req, res){
+    const userItemsBakend = require( __dirname + '/public/js/userItemsBackend.js'); // objects in userItemsBackend file can now be used
+    userItemsBakend.removeItem( req.params.i_id, function(err, result){
+        if( err ){ throw err; } //check and throw errors if they exist
+
+        res.redirect("/seeUserItems");
+    });
+});
+
 
 
 //Listen on port 3000

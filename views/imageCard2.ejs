@@ -1,0 +1,43 @@
+<!-- The following html template is not our own. It is From https://freefrontend.com/bootstrap-cards/ author: 3psy0n
+
+   THIS PAGE WAS NOT FULLY MADE BY US.
+
+    WE MADE HEAVY EDITS AND CHANGES SO THAT IT FITS MORE 
+    WITH THE STYLE OF THE WEBSITE THAT WE WANT BUT THE TEMPLATE
+     WE GOT IT FROM WAS NOT CREATED BY US
+    
+    
+    This file is used to show unapproved uploads that are waiting to be Accepted or Rejected. 
+    -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/imagecards.css">
+     
+     
+     <% for( var i=0; i<itemList.length; i++ ){ %>
+     
+         <article class="postcard light blue">
+             <a class="postcard__img_link" href="#">
+                 <img class="postcard__img" src= /imagefileserver/<%= itemList[i].image_location %> alt= <%= itemList[i].name %> />
+             </a>
+             <div class="postcard__text t-dark">
+                 <h1 class="postcard__title blue"><a href="/viewsingleart/<%= itemList[i].item_id %>"> <%= itemList[i].item_name %> </a></h1>
+                 <div class="postcard__subtitle small">
+                     <time datetime="2020-05-25 12:00:00">
+                         <i class="fas fa-calendar-alt mr-2"></i>Artist: <%= itemList[i].seller %>
+                     </time>
+                 </div>
+                 <div class="postcard__bar"></div>
+                 <div class="postcard__preview-txt"> <%= itemList[i].item_description %> </div>
+                 <ul class="postcard__tagbox">
+                     <li class="tag__item"> 
+                         <a href="/imageapproved/<%= itemList[i].item_id %>"><i class="fas fa-tag mr-2"></i>APPROVE</a>
+                     </li>
+                     <li class="tag__item"><i class="fas fa-clock mr-2"></i>$<%= itemList[i].price %></li>
+                     <li class="tag__item play blue">
+                         <a href="/imagerejected/<%= itemList[i].item_id %>"><i class="fas fa-play mr-2"></i>REJECT</a>
+                     </li>
+                 </ul>
+             </div>
+         </article>
+     
+     <% } %>
