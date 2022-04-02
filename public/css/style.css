@@ -6634,6 +6634,9 @@ button.bg-dark:focus {
 .my-4 {
   margin-bottom: 1.5rem !important; 
   font-family: Optima, sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ml-4,
