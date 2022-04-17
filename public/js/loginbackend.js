@@ -40,7 +40,7 @@ exports.signin = function(username, password, callback ){
 
 
 /*This method is used to signup new users*/
-exports.signup = function(username, password, callback ){
+exports.signup = function(username, password, phonenum, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
   //Make the connection to the database
@@ -50,7 +50,7 @@ exports.signup = function(username, password, callback ){
       }
   
       //Enter new user into the database
-      connection.query( "CALL createNewUser( ? , ?)", [username, password], function(error, result, fields){
+      connection.query( "CALL createNewUser2( ?, ?, ?)", [username, phonenum, password], function(error, result, fields){
         if(error){
           throw error;
         }
@@ -70,6 +70,8 @@ exports.signup = function(username, password, callback ){
         });
   });
 };
+
+
 
 
 /*Use to set who is currently using*/

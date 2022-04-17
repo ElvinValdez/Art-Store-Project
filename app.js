@@ -82,6 +82,7 @@ app.post("/signup", function(req, res){
     const usern = req.body.usernfield;
     const pass1 = req.body.passwfield;
     const pass2 = req.body.passwfield2;
+    const phonenum = req.body.phone;
 
     //if passwords do not match, tell user and redirect back to signup page
     if( pass1 != pass2 ){
@@ -90,7 +91,7 @@ app.post("/signup", function(req, res){
     }else{
         /*Use the signup method from the loginbackend.js file to signup the user*/
         const loginbakend = require( __dirname + '/public/js/loginbackend.js');
-        loginbakend.signup( usern, pass1, function(err, result){
+        loginbakend.signup( usern, pass1, phonenum, function(err, result){
             if(err){ throw err } //catch any errors if they exist
             res.send("<script>alert('Sign Up Successful. Redirecting to login screen'); window.location.href = '/login'; </script>");
         });
@@ -133,6 +134,26 @@ app.get("/addedToCart/:i_id", function( req, res ){
         } );
 
     }
+});
+
+//Route if user clicks Buy Now button. 
+app.get("/buynow/:i_id", function(req, res){
+    //Dont let the user add to cart if they are not logged in.
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js' ); //now you can use objects in loginbakend.js file
+    const gallerybakend = require( __dirname + '/public/js/gallerybackend.js'); //now you can use objects in gallerybackend.js file
+
+    if( loginbakend.getCurrentUserId() === "-99" ){ //user is not logged in, redirect to login
+        res.redirect("/login");
+    }else{
+        gallerybakend.buyNow( loginbakend.getCurrentUserId(), req.params.i_id, function(err, result){
+            if(err){throw err};
+
+            res.redirect("/viewsingleart/"+req.params.i_id );
+
+        } );
+    }
+
+
 });
 
 
@@ -298,6 +319,39 @@ app.get( "/itemRemove/:i_id", function(req, res){
 
         res.redirect("/seeUserItems");
     });
+});
+
+
+
+// --------------------
+// Routes for Orders Page
+// --------------------
+app.get("/orders", function(req, res){
+
+    //Dont let the user add to cart if they are not logged in.
+    const loginbakend = require( __dirname + '/public/js/loginbackend.js' ); //now you can use objects in loginbakend.js file
+    const gallerybakend = require( __dirname + '/public/js/gallerybackend.js'); //now you can use objects in gallerybackend.js file
+
+    if( loginbakend.getCurrentUserId() === "-99" ){ //user is not logged in, redirect to login
+        res.redirect("/login");
+    }else{
+
+        gallerybakend.getAllOrders( loginbakend.getCurrentUserId(), function( err, result ){
+            res.render( "orderspage", {itemList: result} );
+        });
+
+    }
+
+    
+});
+
+
+
+// --------------------
+// Routes for about Page
+// --------------------
+app.get( "/about", function(req, res){
+    res.render( "about" );
 });
 
 
