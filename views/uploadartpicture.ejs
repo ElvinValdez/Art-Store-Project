@@ -1,3 +1,14 @@
+<!-- uploadartpicture
+
+    authors Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+
+
+    This page is used to upload an image to the website.
+
+
+    The same purple theme from the login screen was used to keep consistency
+
+-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +31,7 @@
 
                             <!--Form Starts here-->
                             <form action="/uploadartpicture/<%=des%>-<%=pric%>-<%=name%>" method="post" enctype="multipart/form-data" >
-                                <input type="file" name="filetoupload" /> <br>
+                                <input type="file" name="filetoupload" accept=".jpg,.png" /> <br>
                                 <button type="submit" >Submit</button>
                             </form>
                 

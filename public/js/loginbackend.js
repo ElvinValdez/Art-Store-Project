@@ -1,11 +1,16 @@
-/*Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+/*loginbackend.js
+
+Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
 This file is used to perform the backend operations for the login and signup*/
 
 const mysql = require("mysql");
 const db_file = require( __dirname + '/db_connection.js');
 
 
-/*This method is used to authenticate users that try to signin*/
+/*This method is used to authenticate users that try to signin
+username -> the username of the person trying to login
+password -> the password of the person trying to login
+callback -> the asynchronous function sent. This method takes care operations after verification.*/
 exports.signin = function(username, password, callback ){
     const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -39,7 +44,11 @@ exports.signin = function(username, password, callback ){
 };
 
 
-/*This method is used to signup new users*/
+/*This method is used to signup new users
+username -> the username of the user trying to signup
+password -> the password of the user trying to signup
+phonenum -> the phonenum of the person trying to signup
+callback -> the asynchronous function sent to this method. It is supposed to be used to cleanup or take care of operations after signup*/
 exports.signup = function(username, password, phonenum, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -74,7 +83,9 @@ exports.signup = function(username, password, phonenum, callback ){
 
 
 
-/*Use to set who is currently using*/
+/*Use to set who is currently using
+param id is the id of the current user
+param username is the username of the current user*/
 exports.setCurrentUser = function( id, username ){
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');  //Allows the use of localStorage

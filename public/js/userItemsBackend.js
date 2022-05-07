@@ -1,11 +1,15 @@
-/*Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+/*useritemsBackend
+
+Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
 This file is used to do the backend operations for the Approval page*/
 
 const mysql = require("mysql");
 const db_file = require( __dirname + '/db_connection.js');
 
 
-  /*This method is called when an item waiting for approval is rejected*/
+  /*This method is called when an item waiting for approval is rejected
+  item_i -> the id of the item to be removed
+  callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.removeItem = function( item_i, callback ){
     const connection = db_file.getDBConnection(); //get a object to connect to the database
   
@@ -39,7 +43,9 @@ exports.removeItem = function( item_i, callback ){
 
 
 
-/*This method is used to get items which belong to a certain user from the database*/
+/*This method is used to get items which belong to a certain user from the database
+user_n -> The username of the user
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.getSpecificItem = function( user_n, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 

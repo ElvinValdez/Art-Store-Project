@@ -1,11 +1,14 @@
-/*Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+/*gallerybackend
+
+Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
 This file is used to do the backend operations for the gallery page*/
 
 const mysql = require("mysql");
 const db_file = require( __dirname + '/db_connection.js');
 
 
-/*This method is used to get a list of all APPROVED items from the db*/
+/*This method is used to get a list of all APPROVED items from the db
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.getAllItems = function( callback ){
     const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -39,7 +42,8 @@ exports.getAllItems = function( callback ){
 
 
 
-/*This method is used to get a list of all UNAPPROVED items from the db*/
+/*This method is used to get a list of all UNAPPROVED items from the db
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.getUnapprovedItems = function( callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -74,7 +78,13 @@ exports.getUnapprovedItems = function( callback ){
 
 
 
-/*This method is used to add a new item*/
+/*This method is used to add a new item
+i_name -> the name of the item
+i_description -> the description of the item
+i_price -> the price of the item
+i_seller -> the person selling the item
+i_imageName -> the name of the item
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.addNewItem = function( i_name, i_description, i_price, i_seller, i_imageName, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -109,7 +119,9 @@ exports.addNewItem = function( i_name, i_description, i_price, i_seller, i_image
 
 
 
-/*This method is used to get a specific item from the database*/
+/*This method is used to get a specific item from the database
+item_i -> the id of the item
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.getSpecificItem = function( item_i, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -144,7 +156,10 @@ exports.getSpecificItem = function( item_i, callback ){
 
 
 
-/*This method is used to add a new item*/
+/*This method is used to add a new item
+buyer -> The person buying the item
+item_id -> the id of the item
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.addToCart = function( buyer, item_id, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -177,7 +192,11 @@ exports.addToCart = function( buyer, item_id, callback ){
 };
 
 
-/***/
+/**This method is used to buy an item
+ * buyer_id -> id of the person buying the item
+ * item_id -> id of the item
+ * callback -> Function to be called which holds the necessary steps to be done afterwards
+*/
 exports.buyNow = function( buyer_id, item_id, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 
@@ -210,7 +229,10 @@ exports.buyNow = function( buyer_id, item_id, callback ){
 };
 
 
-/***/
+/**Returns all orders in a resultset based on userid
+ * u_id -> The id of the user that you want the orders from
+ * callback -> Function to be called which holds the necessary steps to be done afterwards
+*/
 exports.getAllOrders = function( u_id, callback ){
   const connection = db_file.getDBConnection(); //get a object to connect to the database
 

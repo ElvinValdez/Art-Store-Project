@@ -1,8 +1,19 @@
+/**uploadfile.js
+ * 
+ * authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+ * 
+ * this file is used for operations which include uploading a file
+*/
 var formidable = require('formidable');
 var fs = require('fs');
 
 
-/*This method just takes an uploaded file and stores them in the imagefileserver folder.*/
+/*This method just takes an uploaded file and stores them in the imagefileserver folder.
+req -> The request parameter which holds some image information
+form -> the way that the image is being sent
+directoryName -> the directory to save the image to
+userid -> The id of the user that is uploading this image
+callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.uploadImage = function( req, form, directoryName, userid, callback ){
 
     form.parse( req, function(err, fields, files){

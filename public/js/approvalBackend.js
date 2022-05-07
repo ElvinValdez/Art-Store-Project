@@ -1,4 +1,6 @@
-/*Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+/*approvalBackend
+
+Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
 This file is used to do the backend operations for the Approval page*/
 
 const mysql = require("mysql");
@@ -6,7 +8,9 @@ const db_file = require( __dirname + '/db_connection.js');
 
 
 
-/*This method is used change the status of a certain item from the database to true.*/
+/*This method is used change the status of a certain item from the database to true if approved, false if otherwise.
+item_i -> The id of the item to be approved
+callback -> Function to be called which holds the necessary steps to be done afterwards.*/
 exports.itemApproved = function( item_i, callback ){
     const connection = db_file.getDBConnection(); //get a object to connect to the database
   
@@ -40,7 +44,9 @@ exports.itemApproved = function( item_i, callback ){
 
 
 
-  /*This method is called when an item waiting for approval is rejected*/
+  /*This method is called when an item waiting for approval is rejected
+  item_i -> The id of the item to be rejected. 
+  callback -> Function to be called which holds the necessary steps to be done afterwards*/
 exports.itemRejected = function( item_i, callback ){
     const connection = db_file.getDBConnection(); //get a object to connect to the database
   

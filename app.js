@@ -1,4 +1,6 @@
-/*Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
+/* This app.js is the main page which holds the routes to all the pages in the website
+
+Authors: Amimul Bhuiyan, Rachid Sassine, Elvin Valdez
     Simple project from school to create a working webstore*/
 const express = require("express");
 const bodyParser = require("body-parser");
